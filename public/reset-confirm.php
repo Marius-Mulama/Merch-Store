@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
     <!-- Required meta tags -->
@@ -6,51 +6,49 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <link rel="stylesheet" type="text/css" href="../css/style.css">
-
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
           integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
 
-    <title>Login</title>
+    <title>Reset</title>
 </head>
-
 <body>
+    <span id=""></span>
+
 <div class="card mx-auto card-info col-lg-6 col-md-8 col-sm-8 col-xl-4" style="padding: 1px; margin-top: 15px;">
-    <div class="card-header">
-        <h3 class="card-title text-center">Login</h3>
+    <div class="card-header" style="padding-top: 5px; padding-bottom: 5px;">
+        <h3 class="card-title text-center">Reset Account</h3>
     </div>
-    <!-- /.card-header -->
     <!-- form start -->
-    <form method="" action="">
-        <div class="card-body">
+    <form method="post" action="#">
+        <div class="card-body" style="padding: 10px;">
             <div class="form-group row">
-                <label for="email" class="col-form-label col-12">Email</label><br>
+                <label for="email" class="col-form-label col-12"> User Email</label><br>
                 <div class="col-12">
-                    <input type="email" class="form-control" id="email" name="email" placeholder="Email" required>
+<!--                    Email is Autofilled and disabled for editing-->
+                    <input type="email" class="form-control" id="email" name="email" placeholder="Email"
+                           value="" required disabled>
                 </div>
             </div>
+
             <div class="form-group row">
-                <label for="password" class="col-form-label col-12">Password</label>
+                <label for="reset-code" class="col-form-label col-12"> Enter Reset Code</label><br>
                 <div class="col-12">
-                    <input type="password" class="form-control" id="password" name="password" placeholder="Password" required>
+                    <input type="number" class="form-control" id="reset-code" name="reset-code" placeholder="Reset Code"
+                           required>
                 </div>
             </div>
-        </div>
 
-        <div class="col text-center">
-            <button type="submit" class="btn btn-lg btn-secondary col-12" style=" margin-bottom: 10px;" name="signin"
-                    id="signin">Log In
-            </button>
-        </div>
-        <div class="form-group text-center">
-<!--            <p>Do you have an account? <a href="signup.php">Sign up</a></p>-->
-            <a href="reset.php">Forgot Your Password?</a>
-        </div>
-
+            <div class="col text-center">
+                <button type="submit" class="btn btn-lg btn-secondary col-12" id="reset" style=" margin-bottom: 10px;" name="reset">
+                    Confirm Reset
+                </button>
+            </div>
     </form>
 </div>
 
 
+<script src="../js/script.js"></script>
 <!-- Option 1: jQuery and Bootstrap Bundle (includes Popper) -->
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
         integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
@@ -61,3 +59,4 @@
 
 </body>
 </html>
+
