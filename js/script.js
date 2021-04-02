@@ -4,7 +4,7 @@ if(addCart){
     addCart.addEventListener("click", addToCart);
 }
 
-
+// Functions used in Products.php
 function addToCart(){
     var x = document.getElementById('added-span');
 
@@ -20,3 +20,9 @@ function addToCart(){
     }, 1500);
 
 }
+
+// JQuery used in uplaodproducts.php
+$(".custom-file-input").on("change", function() {
+    var fileName = $(this).val().split("\\").pop();
+    $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
+});
