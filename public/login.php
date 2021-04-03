@@ -1,3 +1,20 @@
+<?php
+session_start();
+$error='';
+
+if(!isset($_SESSION['user_name'])){
+        if(isset($_SESSION['email_error']) or isset($_SESSION['password_error']) or isset($_SESSION['invalid_error']) ){
+            session_destroy();
+            $error = "<span class='alert alert-danger alert-dismissible' data-dismiss='alert' id='error'> 
+                        Invalid email or Password 
+                       </span>";
+        }
+
+}else{
+    header("Location: ../test.php");
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -19,15 +36,18 @@
     <div class="card-header">
         <h3 class="card-title text-center">Login</h3>
     </div>
+
+    <?php echo $error?>
     <!-- /.card-header -->
     <!-- form start -->
-    <form method="" action="">
+    <form method="post" action="../authentication/login.php">
         <div class="card-body">
             <div class="form-group row">
                 <label for="email" class="col-form-label col-12">Email</label><br>
                 <div class="col-12">
                     <input type="email" class="form-control" id="email" name="email" placeholder="Email" required>
                 </div>
+
             </div>
             <div class="form-group row">
                 <label for="password" class="col-form-label col-12">Password</label>
@@ -35,6 +55,7 @@
                     <input type="password" class="form-control" id="password" name="password" placeholder="Password" required>
                 </div>
             </div>
+
         </div>
 
         <div class="col text-center">
@@ -51,6 +72,8 @@
 </div>
 
 
+
+
 <!-- Option 1: jQuery and Bootstrap Bundle (includes Popper) -->
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
         integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
@@ -58,6 +81,10 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns"
         crossorigin="anonymous"></script>
+
+<script>
+
+</script>
 
 </body>
 </html>
