@@ -97,8 +97,8 @@ if(!isset($_SESSION['user_name'])){
 
         </div>
         <div class="col text-center">
-            <button type="submit" class="btn btn-lg btn-secondary col-12" id="submit" style=" margin-bottom: 10px;"
-                    name="submit">
+            <button type="submit" class="btn btn-lg btn-secondary col-12" id="customer-signup" style=" margin-bottom: 10px;"
+                    name="customer-signup">
                 Sign Up
             </button>
         </div>

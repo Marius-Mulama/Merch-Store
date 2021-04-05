@@ -6,11 +6,10 @@ include("../connection.php");
 include("functions.php");
 
 
-$email = $username = $password = $passwordconfirm = $encrypted_pass = $role = '';
-$role = 'student';
-$errors = array('email' => '', 'username' => '', 'phone' => '', 'password' => '');
+$email = $username = $password = $passwordconfirm = $encrypted_pass = $phone= $site = '';
+$errors = array('email' => '', 'username' => '', 'phone' => '', 'password' => '', 'site' => '');
 
-if (isset($_POST['submit'])) {
+if (isset($_POST['customer-signup'])) {
 
     if (!empty($_POST['email'])) {
         $email = htmlspecialchars(strip_tags($_POST['email']));
@@ -102,4 +101,6 @@ if (isset($_POST['submit'])) {
             echo "Connection Error";
         }
     }
+}else{
+    echo "Something went Wrong";
 }
