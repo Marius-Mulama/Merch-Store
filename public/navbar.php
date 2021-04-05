@@ -22,13 +22,14 @@
         </ul>
         <ul class="navbar-nav">
             <li class="nav-item">
-                <a class="nav-link avatar dropdown-toggle" id="navbarDropdownMenuLink-55" data-toggle="dropdown" style="cursor: pointer;">
+                <a class="nav-link avatar dropdown-toggle" id="navbar-dropdown" data-toggle="dropdown"
+                   aria-haspopup="true" aria-expanded="false" style="cursor: pointer;">
                     <!--suppress CheckImageSize -->
                     <img src="../images/user-logo.png" height="30" class="rounded-circle z-depth-0" alt="avatar">Hi, <?php echo $user; ?>
                 </a>
-                <div class="dropdown-menu dropdown-menu-lg-right dropdown-secondary">
+                <div class="dropdown-menu dropdown-menu-right dropdown-secondary">
+                    <a class="dropdown-item" href="#">Account</a>
                     <a class="dropdown-item" href="logout.php">Logout</a>
-                    <a class="dropdown-item" href="reset.php">Reset</a>
                 </div>
             </li>
 

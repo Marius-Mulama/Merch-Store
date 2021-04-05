@@ -18,10 +18,18 @@ if (isset($_POST['signin'])) {
             $user_data = mysqli_fetch_assoc($result);
 
             if ($user_data["password"] === md5($password)) {
-                $_SESSION['user_name'] = $user_data["username"];
-                //$_SESSION['email'] = $user_data['email'];
 
-                header("Location: ../test.php");
+
+                if($user_data['verified'] == '0'){
+                    $_SESSION['unverified_email'] = 'true';
+                    header("Location:../public/verify.php");
+                }else{
+                    $_SESSION['user_name'] = $user_data["username"];
+                    $_SESSION['email'] = $user_data['email'];
+                    header("Location: ../public/test-public.php");
+                }
+                //$_SESSION['verified'] = $user_data['verified'];
+                //$_SESSION['email'] = $user_data['email'];
 
             } else {
                 $_SESSION['password_error'] = 'Incorrect Password';

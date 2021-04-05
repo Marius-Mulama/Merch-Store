@@ -1,22 +1,17 @@
 <?php
 session_start();
 $error='';
-if(!isset($_SESSION['user_name'])){
-        if(isset($_SESSION['email_error']) or isset($_SESSION['password_error']) or isset($_SESSION['invalid_error']) ){
-            session_destroy();
-            $error = "<span class='alert alert-danger alert-dismissible' data-dismiss='alert' id='error'> 
-                        Invalid email or Password 
-                       </span>";
-        }
-
-
-}else{
-    if(isset($_SESSION['unverified_email'])){
-        header("Location: verify.php");
-    }else{
-        header("Location: test-public.php");
-    }
+if(isset($_SESSION['username'])){
+    header("Location: login.php");
 }
+if(isset($_SESSION['verification_error'])){
+    $error = $_SESSION['verification_error'];
+    $error ="<span class='alert alert-danger alert-dismissible' data-dismiss='alert' id='error'>".
+                        $error
+                       ."</span>";
+    session_destroy();
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -32,19 +27,19 @@ if(!isset($_SESSION['user_name'])){
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
           integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
 
-    <title>Login</title>
+    <title>Verify</title>
 </head>
 
 <body>
 <div class="card mx-auto card-info col-lg-6 col-md-8 col-sm-8 col-xl-4" style="padding: 1px; margin-top: 15px;">
     <div class="card-header">
-        <h3 class="card-title text-center">Login</h3>
+        <h3 class="card-title text-center">Verify Account</h3>
     </div>
 
     <?php echo $error?>
     <!-- /.card-header -->
     <!-- form start -->
-    <form method="post" action="../authentication/login.php">
+    <form method="post" action="../authentication/verify-user.php">
         <div class="card-body">
             <div class="form-group row">
                 <label for="email" class="col-form-label col-12">Email</label><br>
@@ -54,22 +49,20 @@ if(!isset($_SESSION['user_name'])){
 
             </div>
             <div class="form-group row">
-                <label for="password" class="col-form-label col-12">Password</label>
+                <label for="verification-code" class="col-form-label col-12">Verification Code</label><br>
                 <div class="col-12">
-                    <input type="password" class="form-control" id="password" name="password" placeholder="Password" required>
+                    <input type="number" class="form-control" id="verification-code" name="verification-code"
+                           placeholder="Code" required>
                 </div>
             </div>
+
 
         </div>
 
         <div class="col text-center">
-            <button type="submit" class="btn btn-lg btn-secondary col-12" style=" margin-bottom: 10px;" name="signin"
-                    id="signin">Log In
+            <button type="submit" class="btn btn-lg btn-secondary col-12" style=" margin-bottom: 10px;" name="verify"
+                    id="verify">Verify Email
             </button>
-        </div>
-        <div class="form-group text-center">
-            <p>Dont have an account? <a href="signup.php">Sign up</a></p>
-            <a href="reset.php">Forgot Your Password?</a>
         </div>
 
     </form>
