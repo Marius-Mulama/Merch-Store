@@ -38,7 +38,7 @@ if(!isset($_SESSION['user_name'])){
 <body>
 <div class="card mx-auto card-info col-lg-6 col-md-8 col-sm-8 col-xl-4" style="padding: 1px; margin-top: 15px;">
     <div class="card-header">
-        <h3 class="card-title text-center">Login</h3>
+        <h3 class="card-title text-center">Customer Login</h3>
     </div>
 
     <?php echo $error?>
