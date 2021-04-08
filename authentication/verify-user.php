@@ -28,7 +28,7 @@ if (isset($_POST['verify'])) {
                     mysqli_query($conn, $query);
                     mysqli_query($conn, $query1);
                     mysqli_close($conn);
-                    header("Location: ../public/test-public.php");
+                    header("Location: ../public/test-seller.php");
                 }catch (Exception $ex){
                     $_SESSION['verification_error'] = "Something Went wrong Please try Again";
                     header("Location: ../public/verify.php");

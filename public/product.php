@@ -72,9 +72,9 @@
                     <button id="size-button"> S</button>
                     <button id="size-button"> M</button>
                     <button id="size-button"> L</button>
-                    <button id="size-button"> XL</button>
-                    <button id="size-button"> XXL</button>
-                    <button id="size-button">XXXL</button>
+<!--                    <button id="size-button"> XL</button>-->
+<!--                    <button id="size-button"> XXL</button>-->
+<!--                    <button id="size-button">XXXL</button>-->
                 </div>
             </div>
         </div>

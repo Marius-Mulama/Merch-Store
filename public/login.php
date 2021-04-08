@@ -14,7 +14,7 @@ if(!isset($_SESSION['user_name'])){
     if(isset($_SESSION['unverified_email'])){
         header("Location: verify.php");
     }else{
-        header("Location: test-public.php");
+        header("Location: test-seller.php");
     }
 }
 ?>

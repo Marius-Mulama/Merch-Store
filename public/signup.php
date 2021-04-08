@@ -27,7 +27,7 @@ if(!isset($_SESSION['user_name'])){
 
     //echo "Trial Run";
 }else{
-    header("Location: test-public.php");
+    header("Location: test-seller.php");
 }
 ?>
 
