@@ -29,6 +29,9 @@ session_start();
             <li class="nav-item active">
                 <a class="nav-link" href="admin.php">Admin Area <span class="sr-only">(current)</span></a>
             </li>
+            <li class="nav-item active">
+                <a class="nav-link" href="admin.php">Show Sellers <span class="sr-only">(current)</span></a>
+            </li>
 
         </ul>
 
@@ -39,7 +42,6 @@ session_start();
                 </a>
                 <div class="dropdown-menu dropdown-menu-lg-right dropdown-secondary">
                     <a class="dropdown-item" href="../public/logout.php">Logout</a>
-<!--                    <a class="dropdown-item" href="reset.php">Reset</a>-->
                 </div>
             </li>
         </ul>
@@ -54,27 +56,33 @@ require '../connection.php';
 ?>
 
 <!-- table -->
-<div class="container">
+<div class="container-fluid">
     <!-- php code for reading records -->
     <?php
     //setting connection
     $mysqli = new mysqli("localhost", "root", "", "merch_store") or die($mysqli->error);
-
     //variable to store search input
     $searchName = '';
     if (isset($_POST['search'])) {
+        $searched = htmlspecialchars(strip_tags($_POST['searchValue']));
         # code...
-        $searchName = $_POST['searchValue'];
+        //$searchName = $_POST['searchValue'];
+        if(is_numeric($searched)){
+            $result = $mysqli->query("SELECT * FROM sellers WHERE id=$searched LIMIT 25") or die($mysqli->error);
+
+        }else{
+            $result = $mysqli->query("SELECT * FROM sellers WHERE username LIKE '$searched' LIMIT 25") or die($mysqli->error);
+
+        }
+    }else{
+        //sql for fetching all records
+        $result = $mysqli->query("SELECT * FROM sellers") or die($mysqli->error);
     }
-
-
-    //sql for fetching of records
-    $result = $mysqli->query("SELECT * FROM sellers") or die($mysqli->error);
 
     ?>
     <form action="admin.php" method="post">
         <label for="searchValue"></label>
-        <input type="text" name="searchValue" id="searchValue" placeholder="Search Using First Name"
+        <input type="text" name="searchValue" id="searchValue" placeholder="Search Using Brand Name or Seller ID"
                class="form-control col-sm-4">
         <br>
         <input type="submit" name="search" id="search" class="btn btn-info" value="Search Seller">
@@ -89,9 +97,10 @@ require '../connection.php';
             <th>Email Address</th>
             <th>Phone Number</th>
             <th>Popular Site</th>
-            <th>Age</th>
+            <th>Date Registered</th>
             <th>Brand Image</th>
-            <th colspan="2">Actions</th>
+            <th>Actions</th>
+            <th>Verified</th>
 
         </tr>
         <?php
@@ -102,14 +111,24 @@ require '../connection.php';
                 <td><?php echo $row['username']; ?></td>
                 <td><?php echo $row['email']; ?></td>
                 <td><?php echo $row['phone']; ?></td>
-                <td><?php echo $row['popularsite']; ?></td>
+                <td> <?php echo "<a href=".$row['popularsite']." target='_blank'".">".$row['popularsite']."</a>"; ?> </td>
                 <td><?php echo $row['reg_date']; ?></td>
-                <td><?php
-
-                    ?></td>
+                <td></td>
+                <td>
+                    <?php
+                    if($row['verified']==='1'){
+                        echo "Verified";
+                    }else{ ?>
+                        <form method='post' action='verify-seller.php'>
+                            <input type='number' id='id-verify' name="id-verify" value=<?php echo $row['id']; ?> hidden>
+                        <button type='submit' class='btn btn-info' id='verify' name='verify'>Verify</button>
+                        </form>
+                    <?php
+                    }
+                    ?>
+                </td>
                 <td>
                     <a href="admin.php?edit=<?php echo $row['id'] ?>" class="btn btn-primary">Edit</a>
-                    <a href="admin.php?delete=<?php echo $row['id'] ?>" class="btn btn-danger">Delete</a>
                 </td>
             </tr>
         <?php
