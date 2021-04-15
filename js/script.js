@@ -35,13 +35,13 @@ function check() {
 
             document.getElementById('message').style.color = "green";
             document.getElementById('message').innerHTML = "passwords match";
-            document.getElementById('save').disabled = false;
+            //document.getElementById('save').disabled = false;
         } else {
 
             document.getElementById('message').style.color = "red";
             document.getElementById('message').innerHTML = "passwords do not match";
-            document.getElementById('save').disabled = true;
-            document.getElementById('reset').disabled = true;
+            //document.getElementById('save').disabled = true;
+            //document.getElementById('reset').disabled = true;
         }
     }
 }
