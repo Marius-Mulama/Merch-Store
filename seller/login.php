@@ -11,7 +11,7 @@ if(!isset($_SESSION['user_name'])){
     }
 
 }else{
-    header("Location: test-public.php");
+    header("Location: ../index.php");
 }
 ?>
 
@@ -32,9 +32,27 @@ if(!isset($_SESSION['user_name'])){
 </head>
 
 <body>
+<nav class="navbar navbar-expand-md navbar-light bg-light" style="margin: 15px;">
+    <!--    <a class="navbar-brand" href="#">Navbar</a>-->
+    <a class="navbar-brand" href="../index.php">
+        <!--suppress CheckImageSize -->
+        <img src="../images/logo.png" width="30" height="30" class="d-inline-block align-top" alt="">
+        Merch-Store
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+                <a class="nav-link" href="../public/login.php">Customer Login</a>
+            </li>
+        </ul>
+    </div>
+</nav>
 <div class="card mx-auto card-info col-lg-6 col-md-8 col-sm-8 col-xl-4" style="padding: 1px; margin-top: 15px;">
     <div class="card-header">
-        <h3 class="card-title text-center">Seller Login</h3>
+        <h3 class="card-title text-center">Creator Login Login</h3>
     </div>
 
     <?php echo $error?>

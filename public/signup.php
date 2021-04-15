@@ -4,7 +4,7 @@ $error='';
 $username = $email = $email_taken = $user_taken =$taken = $phone = $phone_error = $pass='';
 
 
-if(!isset($_SESSION['user_name'])){
+if(!isset($_SESSION['username'])){
 
     if (isset($_SESSION['email_error'])) {
         $email = $_SESSION['email'];
@@ -27,7 +27,7 @@ if(!isset($_SESSION['user_name'])){
 
     //echo "Trial Run";
 }else{
-    header("Location: test-seller.php");
+    header("Location: ../index.php");
 }
 ?>
 
@@ -47,6 +47,23 @@ if(!isset($_SESSION['user_name'])){
     <title>Sign Up</title>
 </head>
 <body>
+<nav class="navbar navbar-expand-md navbar-light bg-light" style="margin: 15px;">
+    <!--    <a class="navbar-brand" href="#">Navbar</a>-->
+    <a class="navbar-brand" href="#">
+        <!--suppress CheckImageSize -->
+        <img src="../images/logo.png" width="30" height="30" class="d-inline-block align-top" alt="">
+        Merch-Store
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+                <a class="nav-link" href="../seller/signup.php">Creator Signup</a>
+            </li>
+        </ul>
+</nav>
 <div class="card mx-auto card-info col-lg-6 col-md-8 col-sm-8 col-xl-4" style="padding: 1px;">
     <div class="card-header" style="padding-top: 5px; padding-bottom: 5px;">
         <h3 class="card-title text-center">Register Account</h3>

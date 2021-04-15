@@ -1,7 +1,7 @@
 <?php
 session_start();
 $error='';
-$username = $email = $url= $phone= $email_error= $user_error = $phone_error= $password_error= $url_error= $general_error ='';
+$username = $email = $url= $phone= $email_error= $user_error = $phone_error= $password_error= $url_error= $image_error = $general_error ='';
 
 if(!isset($_SESSION['user_name'])){
 
@@ -39,15 +39,20 @@ if(!isset($_SESSION['user_name'])){
     }
 
     if(isset($_SESSION['server_error'])){
-        //session_destroy();
         $general_error = "<span class='alert alert-danger alert-dismissible' data-dismiss='alert' id='error'> 
                         OOp's Something went wrong, Try Again. 
+                       </span>";
+    }
+
+    if(isset($_SESSION['image_error'])){
+        $image_error = "<span class='text-danger'> 
+                        OOp's Something went wrong, Please Try Again. 
                        </span>";
     }
     session_destroy();
 
 }else{
-    header("Location: test-public.php");
+    header("Location: product-upload.php");
 }
 ?>
 
@@ -67,14 +72,33 @@ if(!isset($_SESSION['user_name'])){
     <title>Sign Up</title>
 </head>
 <body>
+<nav class="navbar navbar-expand-md navbar-light bg-light" style="margin: 15px;">
+    <!--    <a class="navbar-brand" href="#">Navbar</a>-->
+    <a class="navbar-brand" href="../index.php">
+        <!--suppress CheckImageSize -->
+        <img src="../images/logo.png" width="30" height="30" class="d-inline-block align-top" alt="">
+        Merch-Store
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+                <a class="nav-link" href="../public/signup.php">Create Customer Account</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+
 <div class="card mx-auto card-info col-lg-6 col-md-8 col-sm-8 col-xl-4" style="padding: 1px;">
     <div class="card-header" style="padding-top: 5px; padding-bottom: 5px;">
-        <h3 class="card-title text-center">Register Seller Account</h3>
+        <h3 class="card-title text-center">Register Creator Account</h3>
     </div>
     <!-- /.card-header -->
     <?php echo $general_error?>
     <!-- form start -->
-    <form method="post" action="../authentication/seller/signup.php">
+    <form method="post" action="../authentication/seller/signup.php" enctype="multipart/form-data">
         <div class="card-body" style="padding: 10px;">
             <div class="form-group row">
                 <label for="username" class="col-form-label col-12"> Enter Brand Name/ User Name</label><br>
@@ -106,6 +130,14 @@ if(!isset($_SESSION['user_name'])){
                     <input type="url" class="form-control" id="site-url" name="site-url"
                            required value="<?php echo $url; ?>">
                     <?php echo $url_error ?>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="" class="font-weight-bold">Product Image</label>
+                <div class="custom-file">
+                    <input type="file" class="custom-file-input" id="seller-image" name="seller-image" accept="image/*">
+                    <label class="custom-file-label" for="customFile">Choose Image</label>
+                    <? echo $image_error ?>
                 </div>
             </div>
             <div class="form-group row">
