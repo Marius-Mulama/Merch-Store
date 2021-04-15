@@ -10,14 +10,11 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav mr-auto">
-            <li class="nav-item active">
-                <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+            <li class="nav-item">
+                <a class="nav-link" href="product-upload.php">Upload Product</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">Discover Creators</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">Pricing</a>
+                <a class="nav-link" href="#">Sales</a>
             </li>
         </ul>
         <ul class="navbar-nav">
@@ -29,23 +26,9 @@
                 </a>
                 <div class="dropdown-menu dropdown-menu-right dropdown-secondary">
                     <a class="dropdown-item" href="#">Account</a>
-                    <a class="dropdown-item" href="logout.php">Logout</a>
+                    <a class="dropdown-item" href="../authentication/logout.php">Logout</a>
                 </div>
             </li>
-
-            <li class="nav-item">
-                <a class="nav-link" href="#">
-                    <!--suppress CheckImageSize -->
-                    <img src="../images/search.png" alt="" height="30">Search
-                </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">
-                    <!--suppress CheckImageSize -->
-                    <img src="../images/cart.png" alt="" height="30">Cart
-                </a>
-            </li>
-
         </ul>
     </div>
 </nav>
