@@ -22,8 +22,9 @@ if (isset($_POST['signin'])) {
                 if ($user_data["password"] === md5($password)) {
 
                     $_SESSION['user_name'] = $user_data["username"];
+                    $_SESSION['seller-id'] = $user_data['id'];
                     $_SESSION['email'] = $user_data['email'];
-                    header("Location: ../../seller/test-seller.php");
+                    header("Location: ../../seller/product-upload.php");
 
                 } else {
                     $_SESSION['password_error'] = 'Incorrect Password';

@@ -24,12 +24,10 @@ if (isset($_POST['signin'])) {
                     $_SESSION['unverified_email'] = 'true';
                     header("Location:../public/verify.php");
                 }else{
-                    $_SESSION['user_name'] = $user_data["username"];
+                    $_SESSION['username'] = $user_data["username"];
                     $_SESSION['email'] = $user_data['email'];
-                    header("Location: ../public/test-public.php");
+                    header("Location: ../index.php");
                 }
-                //$_SESSION['verified'] = $user_data['verified'];
-                //$_SESSION['email'] = $user_data['email'];
 
             } else {
                 $_SESSION['password_error'] = 'Incorrect Password';

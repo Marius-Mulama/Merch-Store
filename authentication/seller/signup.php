@@ -10,6 +10,10 @@ $errors = array('email' => '', 'username' => '', 'phone' => '', 'password' => ''
 
 
 if(isset($_POST['seller-signup'])){
+    //Images directory
+    $target_dir = "../../images/sellers/";
+    $target = $target_dir .basename($_FILES['seller-image']['name']);
+
     if (!empty($_POST['email'])) {
         $email = htmlspecialchars(strip_tags($_POST['email']));
         if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
@@ -87,6 +91,12 @@ if(isset($_POST['seller-signup'])){
         $errors['email'] = 'Empty Password';
     }
 
+    if($_FILES['seller-image']['name'] == "" or $_FILES['seller-image']['size'] == 0) {
+        $errors['image'] = "invalid";
+    }else{
+        $product_image = $_FILES['seller-image']['name'];
+    }
+
 
     if (array_filter($errors)) {
         echo "Invalid";
@@ -95,6 +105,7 @@ if(isset($_POST['seller-signup'])){
         $_SESSION['phone_error'] = $errors['phone'];
         $_SESSION['password_error'] = $errors['password'];
         $_SESSION['url_error'] = $errors['site'];
+        $_SESSION['image_error'] = $errors['image'];
 
         $_SESSION['user-auth'] = $username;
         $_SESSION['email-auth'] = $email;
@@ -110,12 +121,16 @@ if(isset($_POST['seller-signup'])){
         $site = htmlspecialchars(strip_tags($_POST['site-url']));
         $password = htmlspecialchars(strip_tags($_POST['password']));
         $encrypted_pass = md5(strval($password));
+        $seller_image = $_FILES['seller-image']['name'];
 
-        $query = "insert into sellers(username, email, phone, popularsite, password) values ('$username', '$email', '$phone','$site','$encrypted_pass')";
+        $query = "insert into sellers(username, email, phone, popularsite, password, sellerimage) 
+                    values ('$username', '$email', '$phone','$site','$encrypted_pass', '$seller_image')";
 
         try {
             if(mysqli_query($conn, $query)){
-                header("Location: ../../public/login.php");
+                move_uploaded_file($_FILES['seller-image']['tmp_name'], $target);
+                $_SESSION['message'] = 'Success';
+                header("Location: ../../seller/login.php");
                 die;
             }else{
                 $_SESSION['server_error'] = "Something Went Wrong on our Side, Please Try Again";
