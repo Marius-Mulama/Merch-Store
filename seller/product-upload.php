@@ -1,3 +1,25 @@
+<?php
+session_start();
+$message="";
+if(isset($_SESSION['seller-id']) and isset($_SESSION['user_name'])){
+    $user = $_SESSION['user_name'];
+    if(isset($_SESSION['error'])){
+        $message ="<span class='alert alert-danger alert-dismissible' data-dismiss='alert' id='error'>
+                        Something went wrong when uploading the Product. Please try Again.
+                       </span>";
+        unset($_SESSION['error']);
+    }elseif (isset($_SESSION['message'])){
+        $message ="<span class='alert alert-success alert-dismissible' data-dismiss='alert' id='error'>
+                        Product Was Successfully uploaded.
+                       </span>";
+        unset($_SESSION['message']);
+    }
+}else{
+    header("Location: login.php");
+}
+
+?>
+
 <!doctype html>
 <html lang="en">
 <head>
@@ -17,19 +39,24 @@
     <title>Seller</title>
 </head>
 <body>
+<?php
+include ("navbar.php");
+?>
 <div class="container">
     <div class="card " style="padding: 1px;">
         <div class="card-header">
             <h3 class="card-title text-center">Product Upload</h3>
         </div>
+        <?php echo $message; ?>
         <!-- /.card-header -->
         <!-- form start -->
-        <form method="" action="" enctype="">
+        <form method="post" action="../authentication/seller/product-upload.php" enctype="multipart/form-data">
             <div class="card-body">
                 <!-- Product Name Section -->
                 <div class="form-group row">
                     <label for="" class="col-form-label col-12">Product Name</label><br>
                     <div class="col-12">
+                        <label for="product-name"></label>
                         <input type="text" class="form-control" id="product-name" name="product-name" placeholder="Product Name" required="">
                     </div>
                 </div>
@@ -37,7 +64,7 @@
 
                 <!-- Product Description Section -->
                 <div class="form-group">
-                    <label for="">Product Description</label>
+                    <label for="description">Product Description</label>
                     <textarea class="form-control" id="description" rows="5" name="description" style="resize: none;" required></textarea>
                 </div>
                 <!-- End of Product Description Section -->
@@ -46,6 +73,7 @@
                 <div class="form-group row">
                     <label for="" class="col-form-label col-12">Product Price (Ksh.)</label><br>
                     <div class="col-12">
+                        <label for="product-price"></label>
                         <input type="number" class="form-control" id="product-price" name="product-price" placeholder="Price" required>
                     </div>
                 </div>
@@ -53,8 +81,8 @@
 
                 <!-- Category Section (Unisex, Male or Female) -->
                 <div class="form-group">
-                    <label for="">Category</label>
-                    <select class="custom-select my-1 mr-sm-2" id="category">
+                    <label for="category">Category</label>
+                    <select class="custom-select my-1 mr-sm-2" id="category" name="category">
                         <option value="Unisex" selected>Unisex</option>
                         <option value="male">Male</option>
                         <option value="female">Female</option>
@@ -66,7 +94,7 @@
                 <div class="form-group">
                     <label for="" class="font-weight-bold">Product Image</label>
                     <div class="custom-file">
-                        <input type="file" class="custom-file-input" id="product-img" accept="image/*">
+                        <input type="file" class="custom-file-input" id="product-image" name="product-image" accept="image/*">
                         <label class="custom-file-label" for="customFile">Choose Image</label>
                     </div>
                 </div>
@@ -97,7 +125,8 @@
                                 <label for="" style="padding-right: 5px"><input type="checkbox" id="size" name="size" value="small"> S </label>
                             </div>
                             <div class="col">
-                                <input type="number" id="large-quantity" name="quantity">
+                                <label for="large-quantity"></label>
+                                <input type="number" id="small-quantity" name="small-quantity">
                             </div>
                         </div>
                     </div>
@@ -108,7 +137,7 @@
                                 <label style="padding-right: 5px"><input type="checkbox" id="size" name="size" value="medium"> M </label>
                             </div>
                             <div class="col">
-                                <input type="number" id="large-quantity" name="quantity">
+                                <input type="number" id="medium-quantity" name="medium-quantity">
                             </div>
                         </div>
                     </div>
@@ -119,7 +148,7 @@
                                 <label style="padding-right: 5px"><input type="checkbox" id="size" name="size" value="large"> L </label>
                             </div>
                             <div class="col">
-                                <input type="number" id="large-quantity" name="quantity">
+                                <input type="number" id="large-quantity" name="large-quantity">
                             </div>
                         </div>
                     </div>
